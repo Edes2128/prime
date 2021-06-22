@@ -1,11 +1,58 @@
-import React from 'react'
+import React, { useState, useContext } from 'react'
+import axios from 'axios'
+import AlertContext from '../../../context/alertContext/AlertContext';
 
 export default function ShtoKlient({ closePop }) {
 
+    const alertContext = useContext(AlertContext)
+    const [username, setUsername] = useState('');
+    const [emer, setEmer] = useState('')
+    const [mbiemer, setMbiemer] = useState('')
+    const [password, setPassword] = useState('')
+    const [email, setEmail] = useState('')
+    const [telefon, setTelefon] = useState('')
+    const [emri_biznesit, setEmriBiznesit] = useState('')
+    const [adresa, setAdresa] = useState('')
+    const [qyteti, setQyteti] = useState('')
+    const [nipt, setNipt] = useState('')
+
+
     const shtoKlient = (e) => {
         e.preventDefault();
-        alert('Klienti su krijua se sdu un!!!')
+
+        const payload = {
+            username,
+            emer,
+            mbiemer,
+            password,
+            email,
+            telefon,
+            emri_biznesit,
+            adresa,
+            qyteti,
+            nipt
+        }
+
+        axios.post('http://localhost/prime_system/server/user/addClient', payload).then(res => {
+            if (res.data.status === 1) {
+                setUsername('')
+                setEmer('')
+                setMbiemer('')
+                setPassword('')
+                setEmail('')
+                setTelefon('')
+                setEmriBiznesit('')
+                setAdresa('')
+                setQyteti('')
+                setNipt('')
+                closePop()
+                alertContext.setAlert(`${res.data.message}`, "success");
+            } else {
+                alertContext.setAlert(`${res.data.message}`, "error");
+            }
+        })
     }
+
 
 
     return (
@@ -18,53 +65,53 @@ export default function ShtoKlient({ closePop }) {
 
                         <div className="shtoklient-pop-content-form-inputs flex fd-column ai-start  ">
                             <label htmlFor="#">Username</label>
-                            <input type="text" placeholder="Username" />
+                            <input type="text" placeholder="Username" onChange={(e) => setUsername(e.target.value)} />
                         </div>
 
 
                         <div className="shtoklient-pop-content-form-inputs flex fd-column ai-start  ">
                             <label htmlFor="#">Emer</label>
-                            <input type="text" placeholder="Emer" />
+                            <input type="text" placeholder="Emer" onChange={(e) => setEmer(e.target.value)} />
                         </div>
 
                         <div className="shtoklient-pop-content-form-inputs flex fd-column ai-start  ">
                             <label htmlFor="#">Mbiemer</label>
-                            <input type="text" placeholder="Mbiemer" />
+                            <input type="text" placeholder="Mbiemer" onChange={(e) => setMbiemer(e.target.value)} />
                         </div>
 
                         <div className="shtoklient-pop-content-form-inputs flex fd-column ai-start  ">
                             <label htmlFor="#">Email</label>
-                            <input type="text" placeholder="Email" />
+                            <input type="text" placeholder="Email" onChange={(e) => setEmail(e.target.value)} />
                         </div>
 
                         <div className="shtoklient-pop-content-form-inputs flex fd-column ai-start  ">
                             <label htmlFor="#">Password</label>
-                            <input type="password" placeholder="Password" />
+                            <input type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
                         </div>
 
                     </div>
                     <div className="shtoklient-pop-content-form-right">
                         <div className="shtoklient-pop-content-form-inputs flex fd-column ai-start  ">
                             <label htmlFor="#">Telefon</label>
-                            <input type="text" placeholder="Telefon" />
+                            <input type="text" placeholder="Telefon" onChange={(e) => setTelefon(e.target.value)} />
                         </div>
 
                         <div className="shtoklient-pop-content-form-inputs flex fd-column ai-start  ">
                             <label htmlFor="#">Emri i Biznesit</label>
-                            <input type="text" placeholder="Emri biznesit" />
+                            <input type="text" placeholder="Emri biznesit" onChange={(e) => setEmriBiznesit(e.target.value)} />
                         </div>
 
                         <div className="shtoklient-pop-content-form-inputs flex fd-column ai-start  ">
                             <label htmlFor="#">Adresa</label>
-                            <input type="text" placeholder="Adresa" />
+                            <input type="text" placeholder="Adresa" onChange={(e) => setAdresa(e.target.value)} />
                         </div>
                         <div className="shtoklient-pop-content-form-inputs flex fd-column ai-start  ">
                             <label htmlFor="#">Qyteti</label>
-                            <input type="text" placeholder="Qyteti" />
+                            <input type="text" placeholder="Qyteti" onChange={(e) => setQyteti(e.target.value)} />
                         </div>
                         <div className="shtoklient-pop-content-form-inputs flex fd-column ai-start  ">
                             <label htmlFor="#">Nipt</label>
-                            <input type="text" placeholder="Nipt" />
+                            <input type="text" placeholder="Nipt" onChange={(e) => setNipt(e.target.value)} />
                         </div>
                         <button className="shtoklient-pop-content-form-submit-btn" >
                             Ruaj

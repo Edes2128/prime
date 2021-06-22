@@ -5,7 +5,8 @@ import PermIdentityOutlinedIcon from '@material-ui/icons/PermIdentityOutlined';
 import Tooltip from '@material-ui/core/Tooltip';
 import { Link } from 'react-router-dom'
 
-export default function Header() {
+export default function Header({logout}) {
+
 
 
     return (
@@ -23,7 +24,7 @@ export default function Header() {
                         </Link>
                     </Tooltip>
                     <Tooltip title="Dil">
-                        <button className="header-container-buttons-btn" >
+                        <button className="header-container-buttons-btn" onClick={logout} >
                             <ExitToAppOutlinedIcon style={{ color: '#a1a1a1', fontSize: '35px' }} />
                         </button>
                     </Tooltip>

@@ -1,15 +1,35 @@
-import React from 'react'
+import React, { useState, useContext } from 'react'
 import LoginImage from '../../images/login-image.png'
 import Logo from '../../images/logo-login.png'
 import Key from '../../images/key.svg';
 import Person from '../../images/user.svg'
+import axios from 'axios'
+import AlertContext from '../../context/alertContext/AlertContext';
+export default function Login({ history }) {
 
-
-export default function Login() {
+    const [userName, setUsername] = useState('')
+    const [password, setPassword] = useState('')
+    const alertContext = useContext(AlertContext)
 
     const onLogin = (e) => {
-            e.preventDefault();
-            alert('HA HA HA')
+        e.preventDefault();
+        axios.post('http://localhost/prime_system/server/user/login', { username: userName, password }).then(res => {
+            if (res.data.status === 1 && res.data.role === 1) {
+                localStorage.setItem("token", JSON.stringify(res.data.token));
+                localStorage.setItem("auth", true);
+                localStorage.setItem("id", JSON.stringify(res.data.id));
+                setTimeout(() => history.push("/admin"), 2000);
+                alertContext.setAlert(`${res.data.message}`, "success");
+            } else if (res.data.status === 1 && res.data.role === 2) {
+                localStorage.setItem("token", JSON.stringify(res.data.token));
+                localStorage.setItem("auth", true);
+                localStorage.setItem("id", JSON.stringify(res.data.id));
+                setTimeout(() => history.push("/klient"), 2000);
+                alertContext.setAlert(`${res.data.message}`, "success");
+            } else {
+                alertContext.setAlert(`${res.data.message}`, "error");
+            }
+        })
     }
 
     return (
@@ -29,18 +49,18 @@ export default function Login() {
 
                         <div className="login-container-right-form-inputs flex ai-center ">
                             <div className="login-container-right-form-inputs-logo flex ai-center jc-center">
-                                 <img src={Person} alt="" />
+                                <img src={Person} alt="" />
                             </div>
-                            <input type="text" placeholder="Username..." />
+                            <input type="text" placeholder="Username..." onChange={(e) => setUsername(e.target.value)} />
                         </div>
                         <div className="login-container-right-form-inputs flex ai-center">
                             <div className="login-container-right-form-inputs-logo flex ai-center jc-center">
-                                 <img src={Key} alt="" />
+                                <img src={Key} alt="" />
                             </div>
-                            <input type="password" placeholder="Password..." />
+                            <input type="password" placeholder="Password..." onChange={(e) => setPassword(e.target.value)} />
                         </div>
                         <div className="login-container-right-form-buttons">
-                                <button className="submit-btn fs-17 fw-regular" >Kyçu</button>
+                            <button className="submit-btn fs-17 fw-regular" >Kyçu</button>
 
                         </div>
 

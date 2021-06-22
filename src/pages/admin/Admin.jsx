@@ -3,13 +3,21 @@ import { Switch, Route } from 'react-router-dom'
 import Header from './components/Header';
 import Klientet from './components/Klientet';
 import Profili from './components/Profili';
+import axios from 'axios'
 
-export default function Admin() {
-
-
+export default function Admin({ history }) {
+    const logut = () => {
+        axios.post('http://localhost/prime_system/server/user/logout', { user_id: JSON.parse(localStorage.getItem('id')) }).then(res => {
+            if (res.data.status === 1) {
+                history.push('/')
+                localStorage.removeItem('token');
+                localStorage.removeItem('auth');
+            }
+        })
+    }
     return (
         <>
-            <Header />
+            <Header logout={logut} />
             <div className="admin" >
                 <div className="admin-container container">
                     <Switch>

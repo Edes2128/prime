@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -7,22 +7,54 @@ import TableRow from '@material-ui/core/TableRow';
 import SearchOutlinedIcon from '@material-ui/icons/SearchOutlined';
 import Pagination from '@material-ui/lab/Pagination';
 import ShtoKlient from './ShtoKlient';
+import ShtoOferta from './ShtoOferta';
+import axios from 'axios';
+
 
 export default function Klientet() {
 
     const [shtoKlient, opentShtoKlient] = useState(false);
+    const [klientet, setKlientet] = useState([])
+    const [oferta, openOferta] = useState(false)
+    const [klientid, setKlientid] = useState('')
+    const [page, setPage] = useState(1);
+    const [itemPage, setItempage] = useState(10);
+    const start = (page - 1) * itemPage;
+    const end = page * itemPage;
+    const [search, setSearch] = useState('');
+
+
+    useEffect(() => {
+        axios.get('http://localhost/prime_system/server/user/getAllClients').then(res => {
+            setKlientet(res.data)
+        })
+    }, [])
+
+    const handleChange = (event, value) => {
+        setPage(value);
+    };
+
+    const filteredKlient = klientet.filter(pacient =>
+        pacient.email.toString().toLowerCase().includes(search.toLowerCase()) ||
+        pacient.telefon.toString().toLowerCase().includes(search.toLowerCase()) ||
+        pacient.emer.toString().toLowerCase().includes(search.toLowerCase()) ||
+        pacient.mbiemer.toString().toLowerCase().includes(search.toLowerCase()) ||
+        pacient.emri_biznesit.toString().toLowerCase().includes(search.toLowerCase()) ||
+        pacient.qyteti.toString().toLowerCase().includes(search.toLowerCase())
+    )
 
     return (
         <>
+            {oferta && <ShtoOferta klientId={klientid} closePop={() => openOferta(false)} />}
             {shtoKlient && <ShtoKlient closePop={() => opentShtoKlient(false)} />}
             <div className="admin-container-header flex jc-spaceb ai-center">
                 <div className="flex" >
                     <p className="admin-container-header-title fs-40 fw-bold">Klientet</p>
-                    <span className="admin-container-header-subitle fs-24 fw-regular" > (20) </span>
+                    <span className="admin-container-header-subitle fs-24 fw-regular" > ({klientet.length}) </span>
                 </div>
                 <div className="flex ai-center" >
                     <div className="admin-container-header-search flex ai-center jc-spaceb">
-                        <input type="text" placeholder="Kerko..." />
+                        <input type="text" placeholder="Kerko..." onChange={(e) => setSearch(e.target.value)} />
                         <SearchOutlinedIcon style={{ color: '#FFD4B4' }} />
                     </div>
 
@@ -46,91 +78,26 @@ export default function Klientet() {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        <TableRow>
-                            <TableCell  >Farmaci Daja</TableCell>
-                            <TableCell>farmaci@gmail.com</TableCell>
-                            <TableCell>0689638452</TableCell>
-                            <TableCell>Rruga Myslym Shyri</TableCell>
-                            <TableCell>Tirana</TableCell>
-                            <TableCell>Arben Nona</TableCell>
-                        </TableRow>
-                        <TableRow>
-                            <TableCell  >Farmaci Daja</TableCell>
-                            <TableCell>farmaci@gmail.com</TableCell>
-                            <TableCell>0689638452</TableCell>
-                            <TableCell>Rruga Myslym Shyri</TableCell>
-                            <TableCell>Tirana</TableCell>
-                            <TableCell>Arben Nona</TableCell>
-                        </TableRow>
-                        <TableRow>
-                            <TableCell  >Farmaci Daja</TableCell>
-                            <TableCell>farmaci@gmail.com</TableCell>
-                            <TableCell>0689638452</TableCell>
-                            <TableCell>Rruga Myslym Shyri</TableCell>
-                            <TableCell>Tirana</TableCell>
-                            <TableCell>Arben Nona</TableCell>
-                        </TableRow>
-                        <TableRow>
-                            <TableCell  >Farmaci Daja</TableCell>
-                            <TableCell>farmaci@gmail.com</TableCell>
-                            <TableCell>0689638452</TableCell>
-                            <TableCell>Rruga Myslym Shyri</TableCell>
-                            <TableCell>Tirana</TableCell>
-                            <TableCell>Arben Nona</TableCell>
-                        </TableRow>
-                        <TableRow>
-                            <TableCell  >Farmaci Daja</TableCell>
-                            <TableCell>farmaci@gmail.com</TableCell>
-                            <TableCell>0689638452</TableCell>
-                            <TableCell>Rruga Myslym Shyri</TableCell>
-                            <TableCell>Tirana</TableCell>
-                            <TableCell>Arben Nona</TableCell>
-                        </TableRow>
-                        <TableRow>
-                            <TableCell  >Farmaci Daja</TableCell>
-                            <TableCell>farmaci@gmail.com</TableCell>
-                            <TableCell>0689638452</TableCell>
-                            <TableCell>Rruga Myslym Shyri</TableCell>
-                            <TableCell>Tirana</TableCell>
-                            <TableCell>Arben Nona</TableCell>
-                        </TableRow>
-                        <TableRow>
-                            <TableCell  >Farmaci Daja</TableCell>
-                            <TableCell>farmaci@gmail.com</TableCell>
-                            <TableCell>0689638452</TableCell>
-                            <TableCell>Rruga Myslym Shyri</TableCell>
-                            <TableCell>Tirana</TableCell>
-                            <TableCell>Arben Nona</TableCell>
-                        </TableRow>
-                        <TableRow>
-                            <TableCell  >Farmaci Daja</TableCell>
-                            <TableCell>farmaci@gmail.com</TableCell>
-                            <TableCell>0689638452</TableCell>
-                            <TableCell>Rruga Myslym Shyri</TableCell>
-                            <TableCell>Tirana</TableCell>
-                            <TableCell>Arben Nona</TableCell>
-                        </TableRow>
-                        <TableRow>
-                            <TableCell  >Farmaci Daja</TableCell>
-                            <TableCell>farmaci@gmail.com</TableCell>
-                            <TableCell>0689638452</TableCell>
-                            <TableCell>Rruga Myslym Shyri</TableCell>
-                            <TableCell>Tirana</TableCell>
-                            <TableCell>Arben Nona</TableCell>
-                        </TableRow>
-                        <TableRow>
-                            <TableCell  >Farmaci Daja</TableCell>
-                            <TableCell>farmaci@gmail.com</TableCell>
-                            <TableCell>0689638452</TableCell>
-                            <TableCell>Rruga Myslym Shyri</TableCell>
-                            <TableCell>Tirana</TableCell>
-                            <TableCell>Arben Nona</TableCell>
-                        </TableRow>
+                        {filteredKlient.slice(start, end).map(klient => (
+                            <TableRow style={{ cursor: 'pointer' }} onClick={() => {
+                                openOferta(true)
+                                setKlientid(klient.id)
+                            }}  >
+                                <TableCell  >{klient.emri_biznesit}</TableCell>
+                                <TableCell>{klient.email}</TableCell>
+                                <TableCell> {klient.telefon} </TableCell>
+                                <TableCell>  {klient.adresa} </TableCell>
+                                <TableCell> {klient.qyteti} </TableCell>
+                                <TableCell> {klient.emer} {klient.mbiemer} </TableCell>
+                            </TableRow>
+                        ))}
+
+
                     </TableBody>
                 </Table>
             </div>
             <div className="pagination flex jc-end">
-                <Pagination count={10} size="large" />
+                <Pagination count={Math.ceil(filteredKlient.length / itemPage)} showFirstButton showLastButton size="large" onChange={handleChange} />
             </div>
         </>
     )
