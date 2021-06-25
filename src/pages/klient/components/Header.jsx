@@ -5,19 +5,19 @@ import PermIdentityOutlinedIcon from '@material-ui/icons/PermIdentityOutlined';
 import Tooltip from '@material-ui/core/Tooltip';
 import { Link } from 'react-router-dom'
 
-export default function Header({ logout }) {
 
+export default function Header({logout}) {
     return (
         <div className="header" >
             <div className="header-container container flex ai-center jc-spaceb">
                 <div className="header-container-logo">
-                    <Link to="/admin" >
+                    <Link to="/klient" >
                         <img src={Logo} alt="" />
                     </Link>
                 </div>
                 <div className="header-container-buttons flex ai-center">
                     <Tooltip title="Profili" >
-                        <Link to="/admin/profili" className="header-container-buttons-btn" >
+                        <Link to="/klient/profili" className="header-container-buttons-btn" >
                             <PermIdentityOutlinedIcon style={{ color: '#ffd5b4', fontSize: '35px' }} />
                         </Link>
                     </Tooltip>

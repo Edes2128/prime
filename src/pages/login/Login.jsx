@@ -29,6 +29,7 @@ export default function Login({ history }) {
             } else {
                 alertContext.setAlert(`${res.data.message}`, "error");
             }
+
         })
     }
 

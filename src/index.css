@@ -412,6 +412,9 @@ td {
   z-index: 101;
   background-color: white;
   padding: 46px 50px;
+  overflow:auto;
+  max-height: 80%;
+  height: 100%;
 }
 .shto-oferta-pop-content-left {
   width: 80%;
@@ -565,4 +568,196 @@ td {
   margin-right: 0;
   background-color: red;
   color: white;
+}
+
+.klient {
+  background-image: url("./images/Log\ in\ admin\ background.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 140px 0 40px;
+}
+.porosite-header-subtitle {
+  color: #a1a1a1;
+  margin-left: 15px;
+}
+
+.porosite-header-btn-shto {
+  background-color: #ffd4b4;
+  outline: none;
+  border: 0;
+  padding: 15px 50px;
+  border-radius: 25px;
+  cursor: pointer;
+}
+.porosite-table {
+  background-color: white;
+  padding: 0 50px 50px;
+  margin-top: 50px;
+}
+.shtoporosi-pop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+}
+.shtoporosi-pop-opa {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+  background-color: black;
+  opacity: 0.5;
+}
+.shtoporosi-pop-content {
+  background-color: white;
+  z-index: 101;
+  padding: 20px;
+}
+
+.shtoporosi-pop-content-buttons-shkarko {
+  border: 1px solid #a1a1a1;
+  border-radius: 25px;
+  padding: 13px 30px;
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+}
+.shtoporosi-pop-content-buttons-shkarko p {
+  margin-right: 14px;
+}
+
+.shtoporosi-pop-content-buttons-porosit {
+  background-color: #cbebdc;
+  margin-left: 30px;
+  border-radius: 25px;
+  padding: 16px 50px;
+  cursor: pointer;
+}
+
+.input-porosi-text {
+  margin-left: 20px;
+  border: 0;
+  border-bottom: 1px solid #ffd4b4;
+  padding: 10px 5px;
+  outline: none;
+}
+
+.porosi-btn {
+  margin-left: 20px;
+  outline: none;
+  border: 0;
+  border-radius: 25px;
+  padding: 10px 50px;
+  cursor: pointer;
+  background-color: #cbebdc;
+}
+.anullo-btn-porosi {
+  background-color: red;
+  color: white;
+}
+.klientdokumente-pop {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 100;
+}
+.klientdokumente-pop-opa {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  background-color: black;
+  opacity: 0.5;
+}
+.klientdokumente-content {
+  background-color: white;
+  z-index: 101;
+  padding: 20px;
+  overflow-x: auto;
+}
+.klientdokumente-content p {
+  white-space: nowrap;
+  margin-top: 20px;
+}
+.dokumente {
+  margin-right: 40px;
+  position: relative;
+}
+.dokumente-close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+}
+.dokumente:last-child {
+  margin-right: 0;
+}
+
+.dokumente-delete-buttons {
+  margin: 20px 0 20px;
+}
+.dokumente-delete-buttons button {
+  outline: none;
+  border: 0;
+  background-color: #cbebdc;
+  margin-right: 10px;
+  padding: 10px 40px;
+  cursor: pointer;
+}
+.dokumente-delete-buttons button:nth-child(2) {
+  margin-right: 0;
+  background-color: var(--submit-btn);
+}
+.shtoporosi-pop-content-katalogu {
+  margin-top: 30px;
+}
+.kataloget {
+  overflow-x: auto;
+}
+.kataloget-item {
+  margin-top: 40px;
+}
+.kataloget-item p {
+  margin-top: 20px;
+}
+.porosite-klient {
+  width: 100%;
+  padding: 10px;
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 30px;
+  row-gap: 1em;
+  grid-auto-rows: 1fr;
+}
+.porosite-klient-item {
+  position: relative;
+  padding: 10px;
+  cursor: pointer;
+}
+.porosite-klient-item::before {
+  content: "";
+  width: 100%;
+  height: 1px;
+  background-color: #a1a1a1;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+.porosite-klient-item::after {
+  content: "";
+  width: 1px;
+  height: 100%;
+  background-color: #a1a1a1;
+  position: absolute;
+  top: 0;
+  right: 0;
 }

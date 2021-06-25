@@ -14,7 +14,7 @@ export default function ShtoOferta({ klientId, closePop }) {
     const [fileName, setFilename] = useState('')
     const [ofertat, setOfertat] = useState([])
     const [activeIndex, setActiveIndex] = useState(-1)
-
+    const [porosit, setPorosit] = useState([])
 
     useEffect(() => {
         axios.post('http://localhost/prime_system/server/user/getSinleClient', { user_id: klientId }).then(res => {
@@ -25,7 +25,14 @@ export default function ShtoOferta({ klientId, closePop }) {
             setOfertat(res.data)
         })
 
+        axios.post('http://localhost/prime_system/server/user/getOrder', { klient_id: klientId }).then(res => {
+            setPorosit(res.data)
+        })
+
     }, [klientId])
+
+
+    console.log(porosit)
 
 
     const renderFileType = (type) => {
@@ -44,7 +51,7 @@ export default function ShtoOferta({ klientId, closePop }) {
         formData.append('file', file)
         formData.append('filename', fileName)
         formData.append('klient_id', klientId)
-        formData.append('type', file.name.split('.')[1])
+        formData.append('type', file.name.substring(file.name.lastIndexOf('.') + 1, file.name.length))
 
         axios.post('http://localhost/prime_system/server/user/ngarkoOfert', formData).then(res => {
             if (res.data.status === 1) {
@@ -59,6 +66,7 @@ export default function ShtoOferta({ klientId, closePop }) {
 
     }
 
+    console.log(porosit)
 
     return (
         <div className="shto-oferta-pop flex ai-center jc-center" >
@@ -148,6 +156,29 @@ export default function ShtoOferta({ klientId, closePop }) {
                         ))}
                     </div>
 
+                    <div className="porosite-klient" >
+                        {porosit.length === 0 ? <p>Nuk ka porosi</p> :
+                            <>
+                                {porosit.map(porosi => (
+                                    <div className="porosite-klient-item flex jc-center ai-center">
+                                        {porosi.files.length === 1 ?
+                                            <a
+                                                style={{ textDecoration: 'none', color: 'inherit' }}
+                                                href={`http://localhost/prime_system/server/files/${porosi.files[0].file_name}`}
+                                                download
+                                                target="_blank"
+                                                rel="noreferrer" >
+                                                {porosi.date}
+                                            </a>
+                                            :
+                                            <p>{porosi.date}</p>
+                                        }
+
+                                    </div>
+                                ))}
+                            </>
+                        }
+                    </div>
                 </div>
 
 

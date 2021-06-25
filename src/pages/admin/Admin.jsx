@@ -15,6 +15,7 @@ export default function Admin({ history }) {
             }
         })
     }
+
     return (
         <>
             <Header logout={logut} />
