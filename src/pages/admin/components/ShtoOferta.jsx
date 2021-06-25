@@ -15,6 +15,7 @@ export default function ShtoOferta({ klientId, closePop }) {
     const [ofertat, setOfertat] = useState([])
     const [activeIndex, setActiveIndex] = useState(-1)
     const [porosit, setPorosit] = useState([])
+    const [fileIndex, setFileIndex] = useState(-1)
 
     useEffect(() => {
         axios.post('http://localhost/prime_system/server/user/getSinleClient', { user_id: klientId }).then(res => {
@@ -155,11 +156,12 @@ export default function ShtoOferta({ klientId, closePop }) {
                             </div>
                         ))}
                     </div>
-
+                    <p style={{ margin: '20px 0' }} className="fs-24 fw-semi" > Porosit</p>
                     <div className="porosite-klient" >
                         {porosit.length === 0 ? <p>Nuk ka porosi</p> :
                             <>
-                                {porosit.map(porosi => (
+
+                                {porosit.map((porosi, index) => (
                                     <div className="porosite-klient-item flex jc-center ai-center">
                                         {porosi.files.length === 1 ?
                                             <a
@@ -171,9 +173,32 @@ export default function ShtoOferta({ klientId, closePop }) {
                                                 {porosi.date}
                                             </a>
                                             :
-                                            <p>{porosi.date}</p>
-                                        }
+                                            <>
+                                                {fileIndex === index &&
+                                                    <div className="files-client-pop">
+                                                        <p className="files-client-pop-close" onClick={() => setFileIndex(-1)} >X</p>
+                                                        {
+                                                            porosi.files.map(file => (
+                                                                <a
+                                                                    href={`http://localhost/prime_system/server/files/${file.file_name}`}
+                                                                    download
+                                                                    target="_blank"
+                                                                    rel="noreferrer"
+                                                                >
+                                                                    <img
+                                                                        src={renderFileType(file.file_name.substring(file.file_name.lastIndexOf('.') + 1, file.file_name.length))}
+                                                                        alt=""
+                                                                        className="img-res"
+                                                                    />
+                                                                </a>
+                                                            ))
+                                                        }
+                                                    </div>
+                                                }
 
+                                                <p onClick={() => setFileIndex(index)} >{porosi.date}</p>
+                                            </>
+                                        }
                                     </div>
                                 ))}
                             </>

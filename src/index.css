@@ -761,3 +761,32 @@ td {
   top: 0;
   right: 0;
 }
+.files-client-pop{
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: space-between;
+  background-color: white;
+  box-shadow: 0 2px 10px rgba(1, 1, 1, 0.2);
+  padding: 20px;
+  max-width: 300px;
+  overflow-x: auto;
+}
+.files-client-pop a {
+  display: flex;
+  margin-right: 20px;
+}
+.files-client-pop a:last-child{
+margin-right: 0;
+}
+.files-client-pop a img{
+  max-width: 50%;
+}
+.files-client-pop-close{
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  color: red;
+}
