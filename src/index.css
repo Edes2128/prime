@@ -258,7 +258,7 @@ td {
   background-size: cover;
   padding: 0px 0 40px;
 }
-.admin-container{
+.admin-container {
   margin-top: 50px;
 }
 .admin-container-header-subitle {
@@ -309,7 +309,6 @@ td {
   height: 90px;
   background-color: transparent;
   width: 100%;
-  
 }
 .header-container {
   height: 100%;
@@ -350,6 +349,9 @@ td {
   padding-bottom: 100px;
   padding-left: 150px;
   padding-right: 288px;
+  position: relative;
+  overflow: auto;
+  max-height: 95%;
 }
 .shtoklient-pop-content-form {
   margin-top: 80px;
@@ -880,14 +882,34 @@ td {
     padding: 0 20px;
   }
 
-  .admin{
+  .admin {
     padding: 0px 20px 40px;
   }
-  .klient{
+  .klient {
     padding: 0 20px 40px;
+  }
+  .shtoklient-pop-content {
+    padding-right: 150px;
   }
 }
 @media (max-width: 999px) {
+  .shto-oferta-pop-content{
+    max-height: 100%;
+    flex-direction: column-reverse;
+    padding-bottom: 80px;
+  }
+  .shto-oferta-pop-content-right{
+    width: 100%;
+    margin-bottom: 40px;
+  }
+  .shto-oferta-pop-content-left{
+    width: 100%;
+    padding-right: 0;
+  }
+  .shtoklient-pop-content {
+    padding-right: 50px;
+    padding-left: 50px;
+  }
   .login-container {
     flex-direction: column;
   }
@@ -905,11 +927,11 @@ td {
   .login-container-right-form {
     margin: 100px 0;
   }
-  .general-form{
+  .general-form {
     flex-direction: column;
     align-items: center;
   }
-  .profili{
+  .profili {
     padding-bottom: 0;
   }
 }
@@ -918,19 +940,19 @@ td {
   .porosite-header-title {
     font-size: 20px;
   }
-  .porosite-header-subtitle{
+  .porosite-header-subtitle {
     margin-left: 5px;
     font-size: 14px;
   }
-  .porosite-header-btn-shto{
+  .porosite-header-btn-shto {
     font-size: 16px;
     white-space: nowrap;
     padding: 10px 30px;
   }
-  .general-form-left{
+  .general-form-left {
     width: 100%;
   }
-  .general-form-right{
+  .general-form-right {
     width: 100%;
   }
   .login-container-right-form {
@@ -954,43 +976,56 @@ td {
   .admin-container-header-title {
     font-size: 18px;
   }
-  .admin-container-header-subitle{
+  .admin-container-header-subitle {
     font-size: 14px;
     margin-left: 5px;
   }
-  .admin-container-header-btn{
+  .admin-container-header-btn {
     font-size: 16px;
     white-space: nowrap;
     padding: 10px 30px;
   }
-  .admin-container-header-search{
+  .admin-container-header-search {
     padding: 6px 6px 6px 6px;
     margin-right: 5px;
   }
-  .password-form{
+  .password-form {
     width: 100%;
   }
-
+  .shtoklient-pop-content {
+    max-height: 100%;
+  }
+  .shtoklient-pop-content-form {
+    flex-direction: column;
+    align-items: center;
+  }
+  .shtoklient-pop-content-form-left {
+    width: 100%;
+  }
+  .shtoklient-pop-content-form-right {
+    width: 100%;
+    margin-top: 40px;
+  }
 }
 @media (max-width: 500px) {
-  .password-form{
+  .password-form {
     width: 100%;
   }
   .porosite-header {
     flex-direction: column;
     align-items: flex-start;
   }
-  .porosite-header-title{
+  .porosite-header-title {
     margin-bottom: 15px;
   }
   .admin-container-header {
     flex-direction: column;
     align-items: flex-start;
   }
-  .admin-container-header-title{
+  .admin-container-header-title {
     margin-bottom: 15px;
   }
-  .admin-container-header-search{
+  .admin-container-header-search {
     margin-right: 15px;
   }
 }

@@ -4,7 +4,7 @@ import Excel from '../../../images/excel.png'
 import Pdf from '../../../images/pdf.png'
 import Word from '../../../images/word.png'
 import AlertContext from '../../../context/alertContext/AlertContext'
-
+import CloseOutlinedIcon from '@material-ui/icons/CloseOutlined';
 
 export default function ShtoOferta({ klientId, closePop }) {
 
@@ -73,7 +73,7 @@ export default function ShtoOferta({ klientId, closePop }) {
         <div className="shto-oferta-pop flex ai-center jc-center" >
             <div className="shto-oferta-pop-opa" onClick={closePop} ></div>
             <div className="shto-oferta-pop-content container flex">
-
+            <CloseOutlinedIcon style={{position:'absolute',top:'10px',right:'10px',fontSize:'27px',cursor:'pointer'}} onClick={closePop}/>
 
                 <div className="shto-oferta-pop-content-left flex fd-column ai-start">
 

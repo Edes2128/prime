@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react'
 import axios from 'axios'
 import AlertContext from '../../../context/alertContext/AlertContext';
+import CloseOutlinedIcon from '@material-ui/icons/CloseOutlined';
 
 export default function ShtoKlient({ closePop, refreshData }) {
 
@@ -60,6 +61,7 @@ export default function ShtoKlient({ closePop, refreshData }) {
         <div className="shtoklient-pop flex jc-center ai-center" >
             <div className="shtoklient-pop-opa" onClick={closePop}></div>
             <div className="shtoklient-pop-content container flex fd-column">
+                <CloseOutlinedIcon style={{position:'absolute',top:'10px',right:'10px',fontSize:'27px',cursor:'pointer'}} onClick={closePop} />
                 <p className="shtoklient-pop-content-title fs-24 fw-semi">Krijo një klient</p>
                 <form className="shtoklient-pop-content-form flex jc-spaceb" onSubmit={shtoKlient}>
                     <div className="shtoklient-pop-content-form-left">
