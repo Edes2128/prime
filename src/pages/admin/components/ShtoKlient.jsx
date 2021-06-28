@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react'
 import axios from 'axios'
 import AlertContext from '../../../context/alertContext/AlertContext';
 
-export default function ShtoKlient({ closePop }) {
+export default function ShtoKlient({ closePop, refreshData }) {
 
     const alertContext = useContext(AlertContext)
     const [username, setUsername] = useState('');
@@ -33,7 +33,7 @@ export default function ShtoKlient({ closePop }) {
             nipt
         }
 
-        axios.post('http://localhost/prime_system/server/user/addClient', payload).then(res => {
+        axios.post('https://panelprime.alcodeit.com/user/addClient', payload).then(res => {
             if (res.data.status === 1) {
                 setUsername('')
                 setEmer('')
@@ -47,6 +47,7 @@ export default function ShtoKlient({ closePop }) {
                 setNipt('')
                 closePop()
                 alertContext.setAlert(`${res.data.message}`, "success");
+                refreshData()
             } else {
                 alertContext.setAlert(`${res.data.message}`, "error");
             }

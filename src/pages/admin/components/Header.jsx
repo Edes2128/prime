@@ -12,7 +12,7 @@ export default function Header({ logout }) {
             <div className="header-container container flex ai-center jc-spaceb">
                 <div className="header-container-logo">
                     <Link to="/admin" >
-                        <img src={Logo} alt="" />
+                        <img src={Logo} className="img-res" alt="" />
                     </Link>
                 </div>
                 <div className="header-container-buttons flex ai-center">

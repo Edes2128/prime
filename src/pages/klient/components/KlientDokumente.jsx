@@ -10,7 +10,7 @@ export default function KlientDokumente({ closePop, klientId, refreshData }) {
     const [activeIndex, setActiveIndex] = useState(-1)
 
     useEffect(() => {
-        axios.post('http://localhost/prime_system/server/user/getSingleClientFiles', { porosi_id: klientId, klient_id: JSON.parse(localStorage.getItem('id')) }).then(res => {
+        axios.post('https://panelprime.alcodeit.com/user/getSingleClientFiles', { porosi_id: klientId, klient_id: JSON.parse(localStorage.getItem('id')) }).then(res => {
             setFiles(res.data)
         })
     }, [])
@@ -38,13 +38,22 @@ export default function KlientDokumente({ closePop, klientId, refreshData }) {
                                     <div className="dokumente-delete-buttons">
                                         <button className="fs-16 fw-regular" onClick={() => {
 
-                                            axios.post('http://localhost/prime_system/server/user/deleteClientFile', { porosi_id: file.id }).then(res => {
+                                            axios.post('https://panelprime.alcodeit.com/user/deleteClientFile', { porosi_id: file.id, id: file.porosi_id }).then(res => {
+                                                console.log(res.data)
                                                 if (res.data.status === 1) {
                                                     setActiveIndex(-1)
-                                                    axios.post('http://localhost/prime_system/server/user/getSingleClientFiles', { porosi_id: klientId, klient_id: JSON.parse(localStorage.getItem('id')) }).then(res => {
+                                                    axios.post('https://panelprime.alcodeit.com/user/getSingleClientFiles', { porosi_id: klientId, klient_id: JSON.parse(localStorage.getItem('id')) }).then(res => {
                                                         setFiles(res.data)
                                                     })
                                                     refreshData()
+                                                } else if (res.data.status === 2 || res.data.closepop === 1) {
+                                                    setActiveIndex(-1)
+                                                    axios.post('https://panelprime.alcodeit.com/user/getSingleClientFiles', { porosi_id: klientId, klient_id: JSON.parse(localStorage.getItem('id')) }).then(res => {
+                                                        setFiles(res.data)
+                                                    })
+                                                    refreshData()
+                                                    closePop()
+
                                                 }
                                             })
 
@@ -68,7 +77,7 @@ export default function KlientDokumente({ closePop, klientId, refreshData }) {
                                     </g>
                                 </svg>
                             </div>
-                            <a href={`http://localhost/prime_system/server/files/${file.file}`} download target="_blank" rel="noreferrer">
+                            <a href={`https://panelprime.alcodeit.com/files/${file.file}`} download target="_blank" rel="noreferrer">
                                 <img src={renderFileType(file.file.substring(file.file.lastIndexOf('.') + 1, file.file.length))} alt="" />
                             </a>
                             <p>{file.file}</p>

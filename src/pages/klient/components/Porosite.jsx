@@ -22,7 +22,7 @@ export default function Porosite() {
     const start = (page - 1) * itemPage;
     const end = page * itemPage;
     useEffect(() => {
-        axios.post('http://localhost/prime_system/server/user/getOrder', { klient_id: JSON.parse(localStorage.getItem('id')) }).then(res => {
+        axios.post('https://panelprime.alcodeit.com/user/getOrder', { klient_id: JSON.parse(localStorage.getItem('id')) }).then(res => {
             setPorosite(res.data)
             if(res.data !== ''){
   
@@ -32,7 +32,7 @@ export default function Porosite() {
         })
     }, [])
     const refreshData = () => {
-        axios.post('http://localhost/prime_system/server/user/getOrder', { klient_id: JSON.parse(localStorage.getItem('id')) }).then(res => {
+        axios.post('https://panelprime.alcodeit.com/user/getOrder', { klient_id: JSON.parse(localStorage.getItem('id')) }).then(res => {
             setPorosite(res.data)
         })
     }

@@ -13,7 +13,7 @@ export default function Login({ history }) {
 
     const onLogin = (e) => {
         e.preventDefault();
-        axios.post('http://localhost/prime_system/server/user/login', { username: userName, password }).then(res => {
+        axios.post('https://panelprime.alcodeit.com/user/login', { username: userName, password }).then(res => {
             if (res.data.status === 1 && res.data.role === 1) {
                 localStorage.setItem("token", JSON.stringify(res.data.token));
                 localStorage.setItem("auth", true);
@@ -42,8 +42,8 @@ export default function Login({ history }) {
                     </div>
                 </div>
                 <div className="login-container-right flex fd-column  ai-end">
-                    <div className="flex" >
-                        <img src={Logo} alt="Logo" className="img-res" />
+                    <div className="logo-login-content flex" >
+                        <img src={Logo} alt="Logo" className="logo-login img-res" />
                     </div>
 
                     <form className="login-container-right-form flex fd-column ai-end" onSubmit={onLogin}>

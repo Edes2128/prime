@@ -25,10 +25,16 @@ export default function Klientet() {
 
 
     useEffect(() => {
-        axios.get('http://localhost/prime_system/server/user/getAllClients').then(res => {
+        axios.get('https://panelprime.alcodeit.com/user/getAllClients').then(res => {
             setKlientet(res.data)
         })
     }, [])
+
+    const refreshData = () => {
+        axios.get('https://panelprime.alcodeit.com/user/getAllClients').then(res => {
+            setKlientet(res.data)
+        })
+    }
 
     const handleChange = (event, value) => {
         setPage(value);
@@ -46,7 +52,7 @@ export default function Klientet() {
     return (
         <>
             {oferta && <ShtoOferta klientId={klientid} closePop={() => openOferta(false)} />}
-            {shtoKlient && <ShtoKlient closePop={() => opentShtoKlient(false)} />}
+            {shtoKlient && <ShtoKlient closePop={() => opentShtoKlient(false)}  refreshData={() => refreshData()} />}
             <div className="admin-container-header flex jc-spaceb ai-center">
                 <div className="flex" >
                     <p className="admin-container-header-title fs-40 fw-bold">Klientet</p>

@@ -18,15 +18,15 @@ export default function ShtoOferta({ klientId, closePop }) {
     const [fileIndex, setFileIndex] = useState(-1)
 
     useEffect(() => {
-        axios.post('http://localhost/prime_system/server/user/getSinleClient', { user_id: klientId }).then(res => {
+        axios.post('https://panelprime.alcodeit.com/user/getSinleClient', { user_id: klientId }).then(res => {
             setSingleClient(res.data[0])
         })
 
-        axios.post('http://localhost/prime_system/server/user/getSingleOfertClinic', { klient_id: klientId }).then(res => {
+        axios.post('https://panelprime.alcodeit.com/user/getSingleOfertClinic', { klient_id: klientId }).then(res => {
             setOfertat(res.data)
         })
 
-        axios.post('http://localhost/prime_system/server/user/getOrder', { klient_id: klientId }).then(res => {
+        axios.post('https://panelprime.alcodeit.com/user/getOrder', { klient_id: klientId }).then(res => {
             setPorosit(res.data)
         })
 
@@ -54,12 +54,12 @@ export default function ShtoOferta({ klientId, closePop }) {
         formData.append('klient_id', klientId)
         formData.append('type', file.name.substring(file.name.lastIndexOf('.') + 1, file.name.length))
 
-        axios.post('http://localhost/prime_system/server/user/ngarkoOfert', formData).then(res => {
+        axios.post('https://panelprime.alcodeit.com/user/ngarkoOfert', formData).then(res => {
             if (res.data.status === 1) {
                 alertContext.setAlert(`${res.data.message}`, 'succes')
                 setFile("")
                 setFilename("")
-                axios.post('http://localhost/prime_system/server/user/getSingleOfertClinic', { klient_id: klientId }).then(res => {
+                axios.post('https://panelprime.alcodeit.com/user/getSingleOfertClinic', { klient_id: klientId }).then(res => {
                     setOfertat(res.data)
                 })
             }
@@ -109,11 +109,11 @@ export default function ShtoOferta({ klientId, closePop }) {
                                         <p className="delete-oferta-pop-title" >Deshironi te fshini dokumentin</p>
                                         <div className="flex ai-center" >
                                             <button className="delete-oferta-pop-btn" onClick={() => {
-                                                axios.post('http://localhost/prime_system/server/user/deleteOfertSingleClient', { oferta_id: oferta.id }).then(res => {
+                                                axios.post('https://panelprime.alcodeit.com/user/deleteOfertSingleClient', { oferta_id: oferta.id }).then(res => {
                                                     if (res.data.status === 1) {
                                                         setActiveIndex(-1)
                                                         alertContext.setAlert(`${res.data.message}`, 'success')
-                                                        axios.post('http://localhost/prime_system/server/user/getSingleOfertClinic', { klient_id: klientId }).then(res => {
+                                                        axios.post('https://panelprime.alcodeit.com/user/getSingleOfertClinic', { klient_id: klientId }).then(res => {
                                                             setOfertat(res.data)
                                                         })
                                                     } else {
@@ -149,7 +149,7 @@ export default function ShtoOferta({ klientId, closePop }) {
                                     </svg>
 
                                 </div>
-                                <a href={`http://localhost/prime_system/server/files/${oferta.file_name}`} download target="_blank" rel="noreferrer" className="klient-ofertat-item-image" style={{ textDecoration: 'none', color: 'inherit' }} >
+                                <a href={`https://panelprime.alcodeit.com/files/${oferta.file_name}`} download target="_blank" rel="noreferrer" className="klient-ofertat-item-image" style={{ textDecoration: 'none', color: 'inherit' }} >
                                     <img src={renderFileType(oferta.file_name.split('.')[1])} className="img-res" alt="" />
                                 </a>
                                 <p className="klient-ofertat-item-title fs-18 fw-regular" >{oferta.file_name}</p>
@@ -166,7 +166,7 @@ export default function ShtoOferta({ klientId, closePop }) {
                                         {porosi.files.length === 1 ?
                                             <a
                                                 style={{ textDecoration: 'none', color: 'inherit' }}
-                                                href={`http://localhost/prime_system/server/files/${porosi.files[0].file_name}`}
+                                                href={`https://panelprime.alcodeit.com/files/${porosi.files[0].file_name}`}
                                                 download
                                                 target="_blank"
                                                 rel="noreferrer" >
@@ -180,7 +180,7 @@ export default function ShtoOferta({ klientId, closePop }) {
                                                         {
                                                             porosi.files.map(file => (
                                                                 <a
-                                                                    href={`http://localhost/prime_system/server/files/${file.file_name}`}
+                                                                    href={`https://panelprime.alcodeit.com/files/${file.file_name}`}
                                                                     download
                                                                     target="_blank"
                                                                     rel="noreferrer"

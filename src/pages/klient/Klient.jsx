@@ -8,7 +8,7 @@ import axios from 'axios'
 export default function Klient({ history }) {
 
     const logut = () => {
-        axios.post('http://localhost/prime_system/server/user/logout', { user_id: JSON.parse(localStorage.getItem('id')) }).then(res => {
+        axios.post('https://panelprime.alcodeit.com/user/logout', { user_id: JSON.parse(localStorage.getItem('id')) }).then(res => {
             if (res.data.status === 1) {
                 history.push('/')
                 localStorage.removeItem('token');
@@ -18,8 +18,9 @@ export default function Klient({ history }) {
     }
     return (
         <>
-            <Header logout={logut} />
+
             <div className="klient" >
+            <Header logout={logut} />
                 <div className="klient-container container">
                     <Switch>
                         <Route exact path="/klient" component={Porosite} />

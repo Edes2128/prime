@@ -13,7 +13,7 @@ export default function ShtoPorosi({ closePop, refreshData }) {
     const [fileName, setFilename] = useState('')
 
     useEffect(() => {
-        axios.post('http://localhost/prime_system/server/user/shkarkoCmimet', { klient_id: JSON.parse(localStorage.getItem('id')) }).then(res => {
+        axios.post('https://panelprime.alcodeit.com/user/shkarkoCmimet', { klient_id: JSON.parse(localStorage.getItem('id')) }).then(res => {
             setDokumente(res.data)
         })
     }, [])
@@ -34,7 +34,7 @@ export default function ShtoPorosi({ closePop, refreshData }) {
         formdata.append('type', file.name.substring(file.name.lastIndexOf('.') + 1, file.name.length))
         formdata.append('klient_id', JSON.parse(localStorage.getItem('id')));
 
-        axios.post('http://localhost/prime_system/server/user/bejPorosi', formdata).then(res => {
+        axios.post('https://panelprime.alcodeit.com/user/bejPorosi', formdata).then(res => {
             if (res.data.status === 1) {
                 setFile('')
                 setFilename('')
@@ -51,7 +51,7 @@ export default function ShtoPorosi({ closePop, refreshData }) {
             <div className="shtoporosi-pop-opa" onClick={closePop} ></div>
             <div className="shtoporosi-pop-content container">
                 <div className="shtoporosi-pop-content-buttons flex ai-center">
-                    <a href={cmimet ? `http://localhost/prime_system/server/files/${cmimet[0].file}` : '#'}
+                    <a href={cmimet ? `https://panelprime.alcodeit.com/files/${cmimet[0].file}` : '#'}
                         download
                         className="shtoporosi-pop-content-buttons-shkarko flex ai-center" >
                         <p className="fs-18 fw-regular" > Shkarko Cmimet </p>
@@ -87,7 +87,7 @@ export default function ShtoPorosi({ closePop, refreshData }) {
                                 <div className="kataloget">
                                     {kataloget.map(katlog => (
                                         <div className="kataloget-item flex fd-column ai-center" >
-                                            <a href={`http://localhost/prime_system/server/files/${katlog.file}`} download target="_blank" rel="noreferrer">
+                                            <a href={`https://panelprime.alcodeit.com/files/${katlog.file}`} download target="_blank" rel="noreferrer">
                                                 <img src={Pdf} className="img-res" alt="" />
                                             </a>
                                             <p>{katlog.file}</p>
