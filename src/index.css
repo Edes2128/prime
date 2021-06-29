@@ -624,6 +624,7 @@ td {
   background-color: white;
   z-index: 101;
   padding: 20px;
+  overflow: auto;
 }
 
 .shtoporosi-pop-content-buttons-shkarko {
@@ -893,6 +894,23 @@ td {
   }
 }
 @media (max-width: 999px) {
+  .shtoporosi-pop-content-buttons {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .shtoporosi-pop-content-buttons-shkarko{
+    margin-bottom: 20px;
+  }
+  .input-porosi-text{
+    margin-left: 0;
+  }
+  .shtoporosi-pop-content-buttons-porosit{
+    margin-left: 0;
+  }
+  .porosite-klient{
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 10px
+  }
   .shto-oferta-pop-content{
     max-height: 100%;
     flex-direction: column-reverse;
@@ -1027,5 +1045,9 @@ td {
   }
   .admin-container-header-search {
     margin-right: 15px;
+  }
+  .porosite-klient{
+    grid-template-columns: repeat(1, 1fr);
+    column-gap: 0px
   }
 }
