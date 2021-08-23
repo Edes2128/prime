@@ -92,6 +92,9 @@ td {
   font-weight: normal !important;
   white-space: nowrap !important;
 }
+tr:nth-child(even){
+  background-color:#eeeded;
+}
 /* Utilities */
 :root {
   --kycu-btncolor: #cbebdc;
