@@ -49,7 +49,7 @@ export default function Porosite() {
             <div className="porosite-header flex ai-center jc-spaceb">
                 <div className="flex" >
                     <p className="porosite-header-title fs-40 fw-bold">Porosite</p>
-                    <span className="porosite-header-subtitle fs-24 fw-regular" >(20)</span>
+                    <span className="porosite-header-subtitle fs-24 fw-regular" >({porosite.length})</span>
                 </div>
                 <div className="flex ai-center" >
                     <div className="admin-container-header-search flex ai-center jc-spaceb">
